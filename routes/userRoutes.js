@@ -1,5 +1,14 @@
-const userController = require('../controllers/usersController')
+const usersController = require('../controllers/usersController');
 
 module.exports = (app) => {
-    app.post('/api/users/create',userController.register)
+
+    // GET -> OBTENER DATOS
+    // POST -> ALMACENAR DATOS
+    // PUT -> ACTUALIZAR DATOS
+    // DELETE -> ELIMINAR DATOS
+
+    app.post('/api/users/create', usersController.register);
+    app.post('/api/users/login', usersController.login);
+
 }
+

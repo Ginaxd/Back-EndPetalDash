@@ -6,8 +6,8 @@ const db = mysql.createConnection({
     database: 'app_delivery'
 })
 
-db.connect(function(err){
-    if (err)throw err
+db.connect(function (err) {
+    if (err) throw err
     console.log('database conected')
 })
 
