@@ -34,7 +34,7 @@ app.disable('x-powered-by')
 
 app.set('port', port)
 
-const upload = multer ({
+const upload = multer({
     storage: multer.memoryStorage()
 })
 
