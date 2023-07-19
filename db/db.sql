@@ -30,8 +30,8 @@ created_at,
 updated_at
 )
 VALUES(
-'RESTAURANTE',
-'/restaurant/orders/list',
+'FLORERIA',
+'/Flowershop/orders/list',
 '2023-07-17',
 '2023-07-17'
 );
