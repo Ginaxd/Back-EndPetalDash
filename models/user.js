@@ -164,7 +164,7 @@ User.update = (user, result) => {
         lastname = ?,
         phone = ?,
         image = ?,
-        updated_at = ?,
+        updated_at = ?
 
     WHERE 
         id = ?
@@ -204,7 +204,7 @@ User.updateWithoutImage = (user, result) => {
         name = ?,
         lastname = ?,
         phone = ?,
-        updated_at = ?,
+        updated_at = ?
 
     WHERE 
         id = ?

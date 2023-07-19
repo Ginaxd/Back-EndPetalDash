@@ -34,7 +34,7 @@ app.disable('x-powered-by')
 
 app.set('port', port)
 
-const upload = multer ({
+const upload = multer({
     storage: multer.memoryStorage()
 })
 
@@ -45,7 +45,7 @@ userRoutes(app, upload)
 
 
 
-server.listen(3000, '192.168.0.3' || 'localhost', function () {
+server.listen(3000, '192.168.137.239' || 'localhost', function () {
     console.log('Aplicacion de nodeJS ' + port + ' iniciada...')
 })
 
