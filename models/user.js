@@ -6,7 +6,7 @@ const User = {};
 User.findById = (id, result) => {
   const sql = `
     SELECT
-        CONVERT(U.id, char) AS id,
+        U.id,
         U.email,
         U.name,
         U.lastname,
@@ -147,22 +147,34 @@ User.update = (user, result) => {
         updated_at = ?
 
     WHERE 
-        id = ? 
-        `;
-  db.query(
-    sql,
-    [user.name, user.lastname, user.phone, user.image, new Date(), user.id],
-    (err, res) => {
-      if (err) {
-        console.log("Error:", err);
-        result(err, null);
-      } else {
-        console.log(" Usuario actualizado:", user.id);
-        result(null, user.id);
-      }
-    }
-  );
-};
+        id = ?
+       
+        `
+    ;
+    db.query
+        (
+            sql,
+            [
+                user.name,
+                user.lastname,
+                user.phone,
+                user.image,
+                new Date(),
+                user.id
+            ],
+            (err, res) => {
+                if (err) {
+                    console.log('Error:', err);
+                    result(err, null);
+                }
+                else {
+                    console.log(' Usuario actualizado:', res.insertId);
+                    result(null, user.id);
+                }
+            }
+        )
+
+}
 
 User.updateWithoutImage = (user, result) => {
   const sql = `
@@ -177,20 +189,31 @@ User.updateWithoutImage = (user, result) => {
     WHERE 
         id = ?
        
-        `;
-  db.query(
-    sql,
-    [user.name, user.lastname, user.phone, new Date(), user.id],
-    (err, res) => {
-      if (err) {
-        console.log("Error:", err);
-        result(err, null);
-      } else {
-        console.log(" Usuario actualizado:", user.id);
-        result(null, user.id);
-      }
-    }
-  );
-};
+        `
+    ;
+    db.query
+        (
+            sql,
+            [
+                user.name,
+                user.lastname,
+                user.phone,
+                new Date(),
+                user.id
+            ],
+            (err, res) => {
+                if (err) {
+                    console.log('Error:', err);
+                    result(err, null);
+                }
+                else {
+                    console.log(' Usuario actualizado:', res.insertId);
+                    result(null, user.id);
+                }
+            }
+        )
+
+}
+
 
 module.exports = User;

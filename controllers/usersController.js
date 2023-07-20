@@ -156,7 +156,7 @@ module.exports = {
             }
         }
 
-        User.update(user, (err, data) => {
+        User.up(user, (err, data) => {
 
             if (err) {
                 return res.status(501).json({
@@ -165,18 +165,6 @@ module.exports = {
                     error: err
                 });
             }
-
-            User.findById(data, (err, myData) =>{
-                if (err) {
-                    return res.status(501).json({
-                        success: false,
-                        message: 'Hubo un error con el registro del usuario',
-                        error: err
-                    });
-                }
-                myData.session_token = user.session_token;
-                myData.roles = JSON.parse(myData.roles);
-
 
 
                 return res.status(201).json({
@@ -205,17 +193,6 @@ module.exports = {
                 });
             }
 
-            User.findById(data, (err, myData) =>{
-                if (err) {
-                    return res.status(501).json({
-                        success: false,
-                        message: 'Hubo un error con el registro del usuario',
-                        error: err
-                    });
-                }
-                
-                myData.session_token = user.session_token;
-                myData.roles = JSON.parse(myData.roles);
 
                 return res.status(201).json({
                     success: true,

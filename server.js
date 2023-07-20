@@ -12,6 +12,8 @@ const multer = require('multer')
     importar las rutas
 */
 const userRoutes = require('./routes/userRoutes')
+const categoriesRoutes = require('./routes/categoryroutes')
+const productRoutes = require('./routes/productRoutes')
 
 
 const port = process.env.PORT || 3000
@@ -34,7 +36,7 @@ app.disable('x-powered-by')
 
 app.set('port', port)
 
-const upload = multer ({
+const upload = multer({
     storage: multer.memoryStorage()
 })
 
@@ -42,7 +44,8 @@ const upload = multer ({
     llamado de las rutas
 */
 userRoutes(app, upload)
-
+categoriesRoutes(app)
+productRoutes(app,upload)
 
 
 server.listen(3000, '10.168.3.136' || 'localhost', function () {
