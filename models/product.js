@@ -2,9 +2,10 @@ const db = require('../config/config')
 
 const Product = {}
 
-Product.create = (product, result) =>{
+Product.create = (product, result) => {
+
     const sql = `
-    INSERT INTO 
+    INSERT INTO
         products(
             name,
             description,
@@ -14,10 +15,11 @@ Product.create = (product, result) =>{
             image3,
             id_category,
             created_at,
-            updated_at    
+            updated_at   
         )
-    VALUES(?,?,?,?,?,?,?,?,?)
-    `
+    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
     db.query(
         sql,
         [
@@ -29,22 +31,24 @@ Product.create = (product, result) =>{
             product.image3,
             product.id_category,
             new Date(),
-            new Date()
+            new Date(),
         ],
-         (err, res) => {
+        (err, res) => {
             if (err) {
                 console.log('Error:', err);
                 result(err, null);
             }
             else {
-                console.log('Id del nuevo producto', res.insertId);
-                result(null, res);
+                console.log('Id de la nuevo producto:', res.insertId);
+                result(null, res.insertId);
             }
         }
+
     )
+
 }
 
-Product.update = (product, result) =>{
+Product.update = (product, result) => {
     const sql = `
     UPDATE
         products
@@ -73,8 +77,8 @@ Product.update = (product, result) =>{
             new Date(),
             product.id
         ],
-         (err, res) => {
-            if (err) { 
+        (err, res) => {
+            if (err) {
                 console.log('Error:', err);
                 result(err, null);
             }

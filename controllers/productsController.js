@@ -10,9 +10,9 @@ module.exports = {
         const product = JSON.parse(req.body.product); // CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
 
         const files = req.files;
-        
-        let inserts = 0; 
-        
+
+        let inserts = 0;
+
         if (files.length === 0) {
             return res.status(501).json({
                 success: false,
@@ -22,7 +22,7 @@ module.exports = {
         else {
             Product.create(product, (err, id_product) => {
 
-        
+
                 if (err) {
                     return res.status(501).json({
                         success: false,
@@ -30,7 +30,7 @@ module.exports = {
                         error: err
                     });
                 }
-                
+
                 product.id = id_product;
                 const start = async () => {
                     await asyncForEach(files, async (file) => {
@@ -71,9 +71,9 @@ module.exports = {
                         });
                     });
                 }
-    
+
                 start();
-    
+
             });
         }
 
