@@ -76,7 +76,7 @@ PRIMARY KEY(id_user, id_rol)
 create table categories(
 	id int primary key auto_increment,
     name varchar(180) not null,
-    descripcion text not null,
+    description text not null,
     created_at timestamp (0) not null,
     updated_at timestamp(0) not null
 );
