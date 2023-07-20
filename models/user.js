@@ -8,7 +8,7 @@ User.findById = (id, result) => {
 
     const sql = `
     SELECT
-        U.id,
+        CONVERT(U.id,char) AS id,
         U.email,
         U.name,
         U.lastname,
@@ -34,7 +34,7 @@ User.findById = (id, result) => {
     ON
         UHR.id_rol = R.id
     WHERE
-        id = ?
+        U.id = ?
     GROUP BY
         U.id
     `;
@@ -170,7 +170,7 @@ User.update = (user, result) => {
         id = ?
        
         `
-    ;
+        ;
     db.query
         (
             sql,
@@ -188,7 +188,7 @@ User.update = (user, result) => {
                     result(err, null);
                 }
                 else {
-                    console.log(' Usuario actualizado:', res.insertId);
+                    console.log(' Usuario actualizado:', user.id);
                     result(null, user.id);
                 }
             }
@@ -210,7 +210,7 @@ User.updateWithoutImage = (user, result) => {
         id = ?
        
         `
-    ;
+        ;
     db.query
         (
             sql,
@@ -227,7 +227,7 @@ User.updateWithoutImage = (user, result) => {
                     result(err, null);
                 }
                 else {
-                    console.log(' Usuario actualizado:', res.insertId);
+                    console.log(' Usuario actualizado:', user.id);
                     result(null, user.id);
                 }
             }
