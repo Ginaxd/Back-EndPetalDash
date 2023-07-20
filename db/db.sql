@@ -72,3 +72,25 @@ FOREIGN KEY (id_user) REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY(id_rol) REFERENCES roles (id) ON UPDATE CASCADE ON DELETE CASCADE, 
 PRIMARY KEY(id_user, id_rol)
 ); 
+
+create table categories(
+	id int primary key auto_increment,
+    name varchar(180) not null,
+    descripcion text not null,
+    created_at timestamp (0) not null,
+    updated_at timestamp(0) not null
+);
+
+create table products(
+	id int primary key auto_increment,
+    name varchar(180) not null unique,
+    description text not null,
+    price decimal not null,
+    image1 varchar(255) null,
+    image2 varchar(255) null,
+    image3 varchar(255) null,
+    id_category int not null,
+    created_at timestamp(0) not null,
+    updated_at timestamp(0) not null,
+    foreign key(id_category) references categories(id) on update cascade on delete cascade
+);
