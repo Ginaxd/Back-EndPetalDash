@@ -141,7 +141,7 @@ module.exports = {
         });
 
     },
-    
+
     async updateWithImage(req, res) {
 
         const user = JSON.parse(req.body.user); // CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
@@ -156,7 +156,7 @@ module.exports = {
             }
         }
 
-        User.up(user, (err, data) => {
+        User.update(user, (err, data) => {
 
             if (err) {
                 return res.status(501).json({
@@ -166,13 +166,26 @@ module.exports = {
                 });
             }
 
+            User.findById(data, (err, myData) =>{
+                if (err) {
+                    return res.status(501).json({
+                        success: false,
+                        message: 'Hubo un error con el registro del usuario',
+                        error: err
+                    });
+                }
+                myData.session_token = user.session_token;
+                myData.roles = JSON.parse(myData.roles);
 
-            return res.status(201).json({
-                success: true,
-                message: 'Los datos se han actualizado correctamente',
-                data: user
-            });
 
+
+                return res.status(201).json({
+                    success: true,
+                    message: 'Los datos se han actualizado correctamente',
+                    data: myData
+                });
+
+            })
         });
 
     },
@@ -182,7 +195,7 @@ module.exports = {
         const user = req.body; // CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
 
 
-        User.updateWithImage(user, (err, data) => {
+        User.updateWithoutImage(user, (err, data) => {
 
             if (err) {
                 return res.status(501).json({
@@ -192,16 +205,29 @@ module.exports = {
                 });
             }
 
+            User.findById(data, (err, myData) =>{
+                if (err) {
+                    return res.status(501).json({
+                        success: false,
+                        message: 'Hubo un error con el registro del usuario',
+                        error: err
+                    });
+                }
+                
+                myData.session_token = user.session_token;
+                myData.roles = JSON.parse(myData.roles);
 
-            return res.status(201).json({
-                success: true,
-                message: 'Los datos se han actualizado correctamente',
-                data: user
-            });
+                return res.status(201).json({
+                    success: true,
+                    message: 'Los datos se han actualizado correctamente',
+                    data: myData
+                });
+
+            })
 
         });
 
     },
 
-}
+} 
 

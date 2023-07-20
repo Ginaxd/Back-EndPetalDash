@@ -45,7 +45,7 @@ userRoutes(app, upload)
 
 
 
-server.listen(3000, '192.168.0.3' || 'localhost', function () {
+server.listen(3000, '10.168.3.136' || 'localhost', function () {
     console.log('Aplicacion de nodeJS ' + port + ' iniciada...')
 })
 
