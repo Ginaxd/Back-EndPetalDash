@@ -1,7 +1,6 @@
 const usersController = require('../controllers/usersController');
 const passport = require('passport')
 
-
 module.exports = (app, upload) => {
 
     // GET -> OBTENER DATOS
@@ -15,9 +14,6 @@ module.exports = (app, upload) => {
     
     app.put('/api/users/update',  upload.array('image', 1), usersController.registerWithImage);
     app.put('/api/users/update',  usersController.updateWithuotImage);
-
-
-
 
 }
 

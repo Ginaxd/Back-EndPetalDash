@@ -7,13 +7,13 @@ const cors = require('cors')
 const passport = require('passport');
 const multer = require('multer')
 
-
 /* 
     importar las rutas
 */
 const userRoutes = require('./routes/userRoutes')
 const categoriesRoutes = require('./routes/categoryroutes')
 const productRoutes = require('./routes/productRoutes')
+const addressRoutes = require('./routes/addressRoutes')
 
 
 const port = process.env.PORT || 3000
@@ -45,10 +45,11 @@ const upload = multer({
 */
 userRoutes(app, upload)
 categoriesRoutes(app)
-productRoutes(app,upload)
+productRoutes(app, upload)
+addressRoutes(app, upload)
 
 
-server.listen(3000, '10.168.3.136' || 'localhost', function () {
+server.listen(3000, '192.168.0.3' || 'localhost', function () {
     console.log('Aplicacion de nodeJS ' + port + ' iniciada...')
 })
 

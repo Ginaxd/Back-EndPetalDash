@@ -76,7 +76,7 @@ PRIMARY KEY(id_user, id_rol)
 create table categories(
 	id int primary key auto_increment,
     name varchar(180) not null,
-    descripcion text not null,
+    description text not null,
     created_at timestamp (0) not null,
     updated_at timestamp(0) not null
 );
@@ -93,4 +93,16 @@ create table products(
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null,
     foreign key(id_category) references categories(id) on update cascade on delete cascade
+);
+
+CREATE TABLE address(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    address VARCHAR(255) NOT NULL,
+    neighborhood VARCHAR(180) NOT NULL,
+    lat DOUBLE PRECISION NOT NULL,
+    lng DOUBLE PRECISION NOT NULL,
+    created_at TIMESTAMP(0) NOT NULL,
+    updated_at TIMESTAMP(0) NOT NULL,
+    id_user INT NOT NULL,
+    FOREIGN KEY(id_user) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );

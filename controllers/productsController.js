@@ -5,14 +5,29 @@ const asyncForEach = require('../utils/async_foreach');
 
 module.exports = {
 
+    findByCategory(req,res){
+        const id_category = req.params.id_category
+
+        Product.findByCategory(id_category,(err,data) => {
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Hubo un error al listar las categorias',
+                    error: err
+                })
+            }
+            return res.status(201).json(data)
+        })
+    },
+
     create(req, res) {
 
         const product = JSON.parse(req.body.product); // CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
 
         const files = req.files;
-        
-        let inserts = 0; 
-        
+
+        let inserts = 0;
+
         if (files.length === 0) {
             return res.status(501).json({
                 success: false,
@@ -22,7 +37,7 @@ module.exports = {
         else {
             Product.create(product, (err, id_product) => {
 
-        
+
                 if (err) {
                     return res.status(501).json({
                         success: false,
@@ -30,7 +45,7 @@ module.exports = {
                         error: err
                     });
                 }
-                
+
                 product.id = id_product;
                 const start = async () => {
                     await asyncForEach(files, async (file) => {
@@ -71,9 +86,9 @@ module.exports = {
                         });
                     });
                 }
-    
+
                 start();
-    
+
             });
         }
 
