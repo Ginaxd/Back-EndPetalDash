@@ -47,7 +47,7 @@ categoriesRoutes(app)
 productRoutes(app, upload)
 
 
-server.listen(3000, '192.168.0.4' || 'localhost', function () {
+server.listen(3000, '192.168.0.3' || 'localhost', function () {
     console.log('Aplicacion de nodeJS ' + port + ' iniciada...')
 })
 
